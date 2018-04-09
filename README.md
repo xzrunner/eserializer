@@ -1,0 +1,3 @@
+# eserializer
+
+Entity serializer.
