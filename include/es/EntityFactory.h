@@ -2,6 +2,10 @@
 
 #include "ecsx/Entity.h"
 
+#include <string>
+
+namespace ecsx { class World; }
+
 namespace es
 {
 

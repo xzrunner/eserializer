@@ -2,6 +2,7 @@
 
 #include <SM_Rect.h>
 #include <ecsx/CompStorageType.h>
+#include <ecsx/World.h>
 #include <sx/ResFileHelper.h>
 #include <facade/ResPool.h>
 #include <facade/Image.h>
@@ -30,12 +31,12 @@ void EntityFactory::CreateFromImage(ecsx::World& world, ecsx::Entity& entity, co
 	// image
 	auto img = facade::ResPool::Instance().Fetch<facade::Image>(filepath);
 	world.SetCompStorage<e2::CompImage>(ecsx::COMP_STORAGE_SPARSE);
-	auto& cimg = entity.AddComponent<e2::CompImage>();
+	auto& cimg = world.AddComponent<e2::CompImage>(entity);
 	cimg.tex = img->GetTexture();
 
 	// aabb
 	sm::rect sz(img->GetWidth(), img->GetHeight());
-	auto& caabb = entity.AddComponent<e2::CompBoundingBox>();
+	auto& caabb = world.AddComponent<e2::CompBoundingBox>(entity);
 	caabb.aabb.Build(sz);
 }
 
