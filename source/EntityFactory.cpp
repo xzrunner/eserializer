@@ -37,7 +37,7 @@ void EntityFactory::CreateFromImage(ecsx::World& world, ecsx::Entity& entity, co
 	// aabb
 	sm::rect sz(img->GetWidth(), img->GetHeight());
 	auto& caabb = world.AddComponent<e2::CompBoundingBox>(entity);
-	caabb.aabb.Build(sz);
+	caabb.rect = sz;
 }
 
 }
