@@ -1,14 +1,18 @@
 #include "es/EntityFactory.h"
 
+#include <ee0/CompEntityEditor.h>
+
 #include <SM_Rect.h>
+#include <guard/check.h>
 #include <ecsx/CompStorageType.h>
 #include <ecsx/World.h>
+#include <entity2/CompImage.h>
+#include <entity2/CompBoundingBox.h>
+#include <entity2/CompTransform.h>
 #include <sx/ResFileHelper.h>
 #include <facade/ResPool.h>
 #include <facade/Image.h>
 #include <facade/Texture.h>
-#include <entity2/CompImage.h>
-#include <entity2/CompBoundingBox.h>
 
 namespace es
 {
@@ -22,7 +26,16 @@ ecsx::Entity EntityFactory::Create(ecsx::World& world, const std::string& filepa
 	case sx::FILE_IMAGE:
 		CreateFromImage(world, entity, filepath);
 		break;
+	default:
+		GD_REPORT_ASSERT("err type");
 	}
+
+	// transform
+	world.AddComponent<e2::CompLocalMat>(entity);
+
+	// editor
+	world.AddComponent<ee0::CompEntityEditor>(entity);
+
 	return entity;
 }
 
