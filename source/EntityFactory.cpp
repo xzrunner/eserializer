@@ -4,8 +4,8 @@
 
 #include <SM_Rect.h>
 #include <guard/check.h>
-#include <ecsx/CompStorageType.h>
-#include <ecsx/World.h>
+#include <entity0/CompStorageType.h>
+#include <entity0/World.h>
 #include <entity2/CompImage.h>
 #include <entity2/CompBoundingBox.h>
 #include <entity2/CompTransform.h>
@@ -17,7 +17,7 @@
 namespace es
 {
 
-ecsx::Entity EntityFactory::Create(ecsx::World& world, const std::string& filepath)
+e0::Entity EntityFactory::Create(e0::World& world, const std::string& filepath)
 {
 	auto entity = world.CreateEntity();
 	auto type = sx::ResFileHelper::Type(filepath);
@@ -39,11 +39,11 @@ ecsx::Entity EntityFactory::Create(ecsx::World& world, const std::string& filepa
 	return entity;
 }
 
-void EntityFactory::CreateFromImage(ecsx::World& world, ecsx::Entity& entity, const std::string& filepath)
+void EntityFactory::CreateFromImage(e0::World& world, e0::Entity& entity, const std::string& filepath)
 {
 	// image
 	auto img = facade::ResPool::Instance().Fetch<facade::Image>(filepath);
-	world.SetCompStorage<e2::CompImage>(ecsx::COMP_STORAGE_SPARSE);
+	world.SetCompStorage<e2::CompImage>(e0::COMP_STORAGE_SPARSE);
 	auto& cimg = world.AddComponent<e2::CompImage>(entity);
 	cimg.tex = img->GetTexture();
 
