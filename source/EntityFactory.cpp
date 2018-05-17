@@ -23,7 +23,7 @@ e0::Entity EntityFactory::Create(e0::World& world, const std::string& filepath)
 	auto type = sx::ResFileHelper::Type(filepath);
 	switch (type)
 	{
-	case sx::FILE_IMAGE:
+	case sx::RES_FILE_IMAGE:
 		CreateFromImage(world, entity, filepath);
 		break;
 	default:
