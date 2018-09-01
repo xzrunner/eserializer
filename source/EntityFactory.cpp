@@ -12,7 +12,6 @@
 #include <sx/ResFileHelper.h>
 #include <facade/ResPool.h>
 #include <facade/Image.h>
-#include <facade/Texture.h>
 
 namespace es
 {
