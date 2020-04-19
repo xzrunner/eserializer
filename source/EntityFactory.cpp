@@ -16,14 +16,14 @@
 namespace es
 {
 
-e0::Entity EntityFactory::Create(e0::World& world, const std::string& filepath)
+e0::Entity EntityFactory::Create(const ur2::Device& dev, e0::World& world, const std::string& filepath)
 {
 	auto entity = world.CreateEntity();
 	auto type = sx::ResFileHelper::Type(filepath);
 	switch (type)
 	{
 	case sx::RES_FILE_IMAGE:
-		CreateFromImage(world, entity, filepath);
+		CreateFromImage(dev, world, entity, filepath);
 		break;
 	default:
 		GD_REPORT_ASSERT("err type");
@@ -38,10 +38,10 @@ e0::Entity EntityFactory::Create(e0::World& world, const std::string& filepath)
 	return entity;
 }
 
-void EntityFactory::CreateFromImage(e0::World& world, e0::Entity& entity, const std::string& filepath)
+void EntityFactory::CreateFromImage(const ur2::Device& dev, e0::World& world, e0::Entity& entity, const std::string& filepath)
 {
 	// image
-	auto img = facade::ResPool::Instance().Fetch<facade::Image>(filepath);
+	auto img = facade::ResPool::Instance().Fetch<facade::Image>(filepath, &dev);
 	world.SetCompStorage<e2::CompImage>(e0::COMP_STORAGE_SPARSE);
 	auto& cimg = world.AddComponent<e2::CompImage>(entity);
 	cimg.tex = img->GetTexture();
