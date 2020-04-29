@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace ur2 { class Device; }
+namespace ur { class Device; }
 namespace e0 { class World; }
 
 namespace es
@@ -13,11 +13,11 @@ namespace es
 class EntityFactory
 {
 public:
-	static e0::Entity Create(const ur2::Device& dev,
+	static e0::Entity Create(const ur::Device& dev,
         e0::World& world, const std::string& filepath);
 
 private:
-	static void CreateFromImage(const ur2::Device& dev, e0::World& world,
+	static void CreateFromImage(const ur::Device& dev, e0::World& world,
         e0::Entity& entity, const std::string& filepath);
 
 }; // EntityFactory

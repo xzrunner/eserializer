@@ -16,7 +16,7 @@
 namespace es
 {
 
-e0::Entity EntityFactory::Create(const ur2::Device& dev, e0::World& world, const std::string& filepath)
+e0::Entity EntityFactory::Create(const ur::Device& dev, e0::World& world, const std::string& filepath)
 {
 	auto entity = world.CreateEntity();
 	auto type = sx::ResFileHelper::Type(filepath);
@@ -38,7 +38,7 @@ e0::Entity EntityFactory::Create(const ur2::Device& dev, e0::World& world, const
 	return entity;
 }
 
-void EntityFactory::CreateFromImage(const ur2::Device& dev, e0::World& world, e0::Entity& entity, const std::string& filepath)
+void EntityFactory::CreateFromImage(const ur::Device& dev, e0::World& world, e0::Entity& entity, const std::string& filepath)
 {
 	// image
 	auto img = facade::ResPool::Instance().Fetch<facade::Image>(filepath, &dev);
